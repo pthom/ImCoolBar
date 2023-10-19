@@ -30,6 +30,7 @@ SOFTWARE.
 #include <cmath>
 #include <vector>
 #include <array>
+#include <cassert>
 
 //#define ENABLE_DEBUG
 
