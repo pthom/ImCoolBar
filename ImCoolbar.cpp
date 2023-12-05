@@ -71,8 +71,12 @@ IMGUI_API bool ImGui::BeginCoolBar(const char* vLabel, ImCoolBarFlags vCBFlags, 
         window->StateStorage.SetInt(window->GetID("##CoolBarID"), window->GetID(vLabel));
         window->StateStorage.SetFloat(window->GetID("##CoolBarAnchorX"), vConfig.anchor.x);
         window->StateStorage.SetFloat(window->GetID("##CoolBarAnchorY"), vConfig.anchor.y);
-        window->StateStorage.SetFloat(window->GetID("##CoolBarNormalSize"), vConfig.normal_size);
-        window->StateStorage.SetFloat(window->GetID("##CoolBarHoveredSize"), vConfig.hovered_size);
+
+        // Use sizes relative to the font size, for HighDPI handling
+        float dpiScale = ImGui::GetFontSize() / 15.f;
+        window->StateStorage.SetFloat(window->GetID("##CoolBarNormalSize"), vConfig.normal_size * dpiScale);
+        window->StateStorage.SetFloat(window->GetID("##CoolBarHoveredSize"), vConfig.hovered_size * dpiScale);
+
         window->StateStorage.SetFloat(window->GetID("##CoolBarEffectStrength"), vConfig.effect_strength);
 
         const auto& bar_size   = ImGui::GetWindowSize();
