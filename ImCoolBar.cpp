@@ -112,8 +112,12 @@ IMGUI_API bool ImGui::BeginCoolBar(const char* vLabel, ImCoolBarFlags vCBFlags, 
         window_ptr->StateStorage.SetInt(window_ptr->GetID(ICB_PREFIX "ItemIdx"), 0);
         window_ptr->StateStorage.SetInt(window_ptr->GetID(ICB_PREFIX "Flags"), vCBFlags);
         window_ptr->StateStorage.SetFloat(window_ptr->GetID(ICB_PREFIX "Anchor"), getChannelInv(vConfig.anchor, vCBFlags));
-        window_ptr->StateStorage.SetFloat(window_ptr->GetID(ICB_PREFIX "NormalSize"), vConfig.normal_size);
-        window_ptr->StateStorage.SetFloat(window_ptr->GetID(ICB_PREFIX "HoveredSize"), vConfig.hovered_size);
+
+        // Use sizes relative to the font size, for HighDPI handling
+        float dpiScale = ImGui::GetFontSize() / 15.f;
+        window_ptr->StateStorage.SetFloat(window_ptr->GetID(ICB_PREFIX "NormalSize"), vConfig.normal_size * dpiScale);
+        window_ptr->StateStorage.SetFloat(window_ptr->GetID(ICB_PREFIX "HoveredSize"), vConfig.hovered_size * dpiScale);
+
         window_ptr->StateStorage.SetFloat(window_ptr->GetID(ICB_PREFIX "EffectStrength"), vConfig.effect_strength);
 
         const auto bar_size = window_ptr->ContentSize + ImGui::GetStyle().WindowPadding * 2.0f;
