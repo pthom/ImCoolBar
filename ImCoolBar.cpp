@@ -120,8 +120,10 @@ IMCOOLBAR_API bool ImGui::BeginCoolBar(const char* aLabel, const ImCoolBarSettin
         pWindow->StateStorage.SetFloat(pWindow->GetID(ICB_PREFIX "Anchor"), anchor);
         const auto normalSizeId = pWindow->GetID(ICB_PREFIX "NormalSize");
         const auto hoveredSizeId = pWindow->GetID(ICB_PREFIX "HoveredSize");
-        pWindow->StateStorage.SetFloat(normalSizeId, arSettings.normalSize);
-        pWindow->StateStorage.SetFloat(hoveredSizeId, arSettings.hoveredSize);
+        // Use sizes relative to the font size, for HighDPI handling
+        float dpiScale = ImGui::GetFontSize() / 15.f;
+        pWindow->StateStorage.SetFloat(normalSizeId, arSettings.normalSize * dpiScale);
+        pWindow->StateStorage.SetFloat(hoveredSizeId, arSettings.hoveredSize * dpiScale);
         pWindow->StateStorage.SetFloat(pWindow->GetID(ICB_PREFIX "EffectStrength"), ImClamp(arSettings.effectStrength, 0.0f, 1.0f));
 
         const auto animScaleId = pWindow->GetID(ICB_PREFIX "AnimScale");
