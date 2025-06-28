@@ -26,6 +26,7 @@ SOFTWARE.
 #include <cmath>
 #include <vector>
 #include <array>
+#include <cassert>
 
 #define ICB_PREFIX "ICB"
 #define ICB_TYPE_MAGIC 0x49434231  // "ICB1"
