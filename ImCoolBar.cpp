@@ -30,6 +30,7 @@ SOFTWARE.
 #include <cmath>
 #include <vector>
 #include <array>
+#include <cassert>
 
 #define ICB_PREFIX "ICB"
 //#define ENABLE_IMCOOLBAR_DEBUG
