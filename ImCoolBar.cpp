@@ -190,7 +190,7 @@ IMCOOLBAR_API bool ImGui::BeginCoolBar(const char* aLabel, const ImCoolBarSettin
             auto mouseBubbledRel = 0.0f;
             auto totalBubbledContent = 0.0f;
             auto mouseFound = false;
-            for (int32_t i = 0; i < prevItemCount; ++i) {
+            for (int i = 0; i < prevItemCount; ++i) {
                 const auto baseBtnCenter = baseBarPosMain + wpMain + i * normalSize + normalSize * 0.5f;
                 const auto diffPos = (mouseMain - baseBtnCenter) / baseBarMain;
                 const auto es = pWindow->StateStorage.GetFloat(pWindow->GetID(ICB_PREFIX "EffectStrength"));
